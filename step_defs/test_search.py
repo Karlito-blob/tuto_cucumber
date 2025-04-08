@@ -1,4 +1,3 @@
-import pytest
 from pytest_bdd import scenarios, given, when, then
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,11 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 # Charger le .feature
 scenarios("../features/search_on_duck.feature")
 
-@pytest.fixture
-def browser():
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
 
 @given("je suis sur la page d'accueil de DuckDuckGo 'https://www.duckduckgo.com'")
 def open_duckduckgo_homepage(browser):
@@ -47,5 +41,3 @@ def verify_results(browser):
     )
     # Vérification du contenu de la page
     assert 'Panda' in browser.title or 'Panda' in browser.page_source
-
-#coucou
